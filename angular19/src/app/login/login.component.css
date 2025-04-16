@@ -1,0 +1,26 @@
+body{
+    background-color:cornflowerblue;
+}
+.login-form{
+    position: absolute;
+    left: 33%;
+    top: 143px;
+    width: 33%;
+}
+
+.login-btn{
+    margin-left: 10px !important;
+}
+body {
+    width: 100%;
+    height: 89.5%;
+    opacity: 200%;
+    background-attachment: fixed;
+}
+.example-full-width{
+    width: 83%;
+}
+.login-wd{
+    position: relative;
+    left: 60px;
+}

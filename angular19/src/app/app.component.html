@@ -1,0 +1,89 @@
+<div class="hd_fixed">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <div class="waviy">
+        <span style="--i:1">A</span>
+        <span style="--i:2">N</span>
+        <span style="--i:3">G</span>
+        <span style="--i:4">U</span>
+        <span style="--i:5">L</span>
+        <span style="--i:6">A</span>
+        <span style="--i:7">R</span>
+      </div>
+      &nbsp;
+      <!-- <img class="brand-logo" src="https://thumbs.dreamstime.com/z/wolken-datenverarbeitung-26900070.jpg"/> -->
+      <!-- <button mat-button class="dropbtn"><a routerLink="/lazy" class="about" routerLinkActive="active" ariaCurrentWhenActive="page">Lazy Component</a></button> -->
+      <div *ngIf="isLoggedOut" class="main_container">
+        <button mat-button class="dropbtn"><a routerLink="/home" class="about" routerLinkActive="active"
+            ariaCurrentWhenActive="page">{{'Home'}}</a></button>
+        <!-- <button mat-button class="dropbtn"><a routerLink="/charts" class="about" routerLinkActive="active"
+            ariaCurrentWhenActive="page">{{'CHART'}}</a></button>
+        <button mat-button class="dropbtn"><a routerLink="/service" class="about" routerLinkActive="active"
+            ariaCurrentWhenActive="page">Tree Service</a></button>
+        <button mat-button class="dropbtn"><a routerLink="/pdfviewer" class="about" routerLinkActive="active"
+            ariaCurrentWhenActive="page">PDF Viewer</a></button>
+        <button mat-button class="dropbtn"><a routerLink="/study" class="about" routerLinkActive="active"
+            ariaCurrentWhenActive="page">Study</a></button>
+        <button mat-button class="dropbtn"><a routerLink="/fruits/home" class="about" routerLinkActive="active"
+            ariaCurrentWhenActive="page">Crud Operations</a></button>
+        <button mat-button class="dropbtn"><a routerLink="/excel" class="about" routerLinkActive="active"
+            ariaCurrentWhenActive="page">Excel</a></button>
+        <button mat-button class="dropbtn"><a routerLink="/about" class="about" routerLinkActive="active"
+            ariaCurrentWhenActive="page">About</a></button>
+
+        <button mat-button class="dropbtn"><a routerLink="/contact" class="about"  routerLinkActive="active" ariaCurrentWhenActive="page">Contact</a></button>
+        <button mat-button class="dropbtn" [matMenuTriggerFor]="animals">ALL Services</button>
+        <mat-menu #animals="matMenu">
+          <button mat-menu-item [matMenuTriggerFor]="angular">Angular Service</button>
+        </mat-menu>
+        <mat-menu #angular="matMenu">
+          <button mat-menu-item [matMenuTriggerFor]="tree">Tree Service</button>
+          <button mat-menu-item [matMenuTriggerFor]="charts">Charts Service</button>
+          <button mat-menu-item [matMenuTriggerFor]="pdf">PDF Service</button>
+          <button mat-menu-item [matMenuTriggerFor]="study">Study Service</button>
+          <button mat-menu-item [matMenuTriggerFor]="crud">Crud Service</button>
+        </mat-menu>
+        <mat-menu #tree="matMenu">
+          <a routerLink="/service" class="tree-service" routerLinkActive="active" ariaCurrentWhenActive="page">Tree
+            Service</a>
+        </mat-menu>
+        <mat-menu #charts="matMenu">
+          <a routerLink="/charts" class="tree-service" routerLinkActive="active"
+            ariaCurrentWhenActive="page">{{"CHART"}}</a>
+        </mat-menu>
+        <mat-menu #pdf="matMenu">
+          <a routerLink="/pdfviewer" class="tree-service" routerLinkActive="active"
+            ariaCurrentWhenActive="page">PDFViewer</a>
+        </mat-menu>
+        <mat-menu #study="matMenu">
+          <a routerLink="/study" class="tree-service" routerLinkActive="active" ariaCurrentWhenActive="page">Study</a>
+        </mat-menu>
+        <mat-menu #crud="matMenu">
+          <a routerLink="/fruits/home" class="tree-service" routerLinkActive="active" ariaCurrentWhenActive="page">Crud
+            Operations</a>
+        </mat-menu>
+        <button mat-button class="dropbtn"><a routerLink="/products" class="about" routerLinkActive="active"
+            ariaCurrentWhenActive="page">Products</a></button> -->
+        <!-- <button *ngIf="rolestatus" mat-button class="dropbtn"><a routerLink="/admin" class="about" routerLinkActive="active" ariaCurrentWhenActive="page">Admin</a></button> -->
+
+        <div class="right-section">
+          <div ngbDropdown class="dropdown">
+            <button ngbDropdownToggle class="btn btn-secondary dpd-btn" type="button" id="dropdownMenuButton1"
+              aria-expanded="false">
+              {{username}}
+            </button>
+            <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
+              <li><a class="logout-btn" routerLink="/logout" routerLinkActive="active" ariaCurrentWhenActive="page"
+                  (click)="logout()">Logout</a></li>
+              <li><a class="logout-btn" routerLink="/about" routerLinkActive="active"
+                  ariaCurrentWhenActive="page">Profile</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+<div class="router_dv">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,23 @@
+<div class="containerr">
+    <legend>Edit User</legend>
+    <form>
+        <div class="form-group">
+          <label for="txtname">user Name</label>
+          <input type="text" class="form-control" id="txtname" name="name" aria-describedby="name"  placeholder="Enter Name" [(ngModel)]="FruitsForm.username" />
+        </div>
+        &nbsp;
+        <div class="form-group">
+            <label for="txtquantity">email</label>
+            <input type="email" class="form-control" id="txtquantity" name="quantity" aria-describedby="quantity" placeholder="Enter Email" [(ngModel)]="FruitsForm.email">
+        </div>
+        &nbsp;
+        <div class="form-group">
+            <label for="txtprice">age</label>
+            <input type="number" class="form-control" id="txtprice" name="price" aria-describedby="price" placeholder="Enter Age" [(ngModel)]="FruitsForm.age">
+            &nbsp;
+            &nbsp;
+        </div>
+        <button type="button" (click)="update()" class="btn btn-primary submit-btn">Update</button>&nbsp;
+        <button type="button" (click)="cancle()" class="btn btn-primary submit-btn" >Cancle</button>
+    </form>
+</div>
