@@ -6,8 +6,11 @@ import { UsereditComponent } from './useredit/useredit.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
-    { path: 'home', component: HomeComponent,canActivate:[authGuard] },
+    { path: 'home', component: HomeComponent },
     { path: 'useredit/:id', component: UsereditComponent,canActivate:[authGuard] },
 
     { path: '', component: HomeComponent, canActivate:[authGuard] },
 ];
+
+
+// ymnc iupk cgdj hxtr

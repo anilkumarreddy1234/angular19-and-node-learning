@@ -1,31 +1,197 @@
 <body>
     <mat-card class="example-card login-form">
-    <div class="login-wd">
-        <mat-card-header>
-        <mat-card-title>Login</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <form class="example-form">
-                <table class="example-full-width" cellspacing="0">
-                <tr>
-                    <td>
-                    <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
-                    </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                <td><mat-form-field class="example-full-width">
-                    <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required (keyup.enter)="keyDownFunction($event)">
-                </mat-form-field></td>
-                </tr></table>
-            </form>
-            <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
-            </mat-card-content>
-            <mat-card-actions>
-            <button mat-raised-button class="login-btn" (click)="login()" (keypress)="keyDownFunction($event)" color="primary">Login</button>
-            <button mat-raised-button class="login-btn" (click)="signup()" color="primary">Signup</button>
-            </mat-card-actions>
+        <div>
+            <mat-card-header>
+            <mat-card-title>Login with U & P </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <form class="example-form">
+                    <table class="example-full-width" cellspacing="0">
+                    <tr>
+                        <td>
+                        <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+                        </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                    <td><mat-form-field class="example-full-width">
+                        <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
+                    </mat-form-field></td>
+                    </tr></table>
+                </form>
+                <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+                </mat-card-content>
+                <mat-card-actions>
+                <button mat-raised-button class="login-btn" (click)="login()"  color="primary">Login</button>
+                <button mat-raised-button class="login-btn" (click)="signup()" color="primary">Signup</button>
+                </mat-card-actions>
         </div>
+        <h3>OR</h3>
+
+
+          <div *ngIf="!showOtpForm">
+              <!-- Phone Number Form -->
+              <!-- <mat-card > -->
+                <mat-card-header>
+                  <mat-card-title>Login with OTP</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <form class="example-form">
+                    <table class="example-full-width" cellspacing="0">
+                      <tr>
+                        <td>
+                          <mat-form-field class="example-full-width">
+                            <mat-label>Phone Number</mat-label>
+                            <input
+                              matInput
+                              placeholder="Enter phone number (e.g., 7411706600)"
+                              [(ngModel)]="phone"
+                              name="phone"
+                              required
+                            />
+                            <mat-error *ngIf="!isPhoneValid()">
+                              Enter a valid 10-digit phone number (no leading 0)
+                            </mat-error>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+                    </table>
+                  </form>
+                  <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+                </mat-card-content>
+                <mat-card-actions>
+                  <button
+                    mat-raised-button
+                    class="login-btn"
+                    (click)="otpLogin()"
+                   
+                    color="primary"
+                    [disabled]="!isPhoneValid()"
+                  >
+                    Send OTP
+                  </button>
+                </mat-card-actions>
+              <!-- </mat-card> -->
+               </div>
+            
+              <!-- OTP Form -->
+               <div *ngIf="showOtpForm">
+              <!-- <mat-card > -->
+                <mat-card-header>
+                  <mat-card-title>Enter OTP</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <form class="otp-form">
+                    <div class="otp-inputs">
+                      <input
+                        *ngFor="let digit of otpDigits; let i = index"
+                        type="text"
+                        maxlength="1"
+                        class="otp-digit"
+                        [id]="'otp-' + i"
+                        [(ngModel)]="otpDigits[i]"
+                        (input)="onOtpInput($event, i)"
+                        (keydown)="onOtpInput($event, i)"
+                        pattern="[0-9]"
+                        name="otp"
+                        required
+                      />
+                    </div>
+                  </form>
+                  <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+                </mat-card-content>
+                <mat-card-actions>
+                  <button
+                    mat-raised-button
+                    class="login-btn"
+                    (click)="verifyOTP()"
+                    color="primary"
+                    [disabled]="otpDigits.join('').length !== 6"
+                  >
+                    Verify OTP
+                  </button>
+                  <button mat-button color="warn" (click)="resetForm()">Cancel</button>
+                </mat-card-actions>
+              </div>
+              <!-- </mat-card> -->
+
+
+            <h3>OR</h3>
+            <div  *ngIf="!emailShowOtpForm">
+              <!-- <mat-card> -->
+                <mat-card-header>
+                  <mat-card-title>Login with Email OTP</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <form class="example-form">
+                    <table class="example-full-width" cellspacing="0">
+                      <tr>
+                        <td>
+                          <mat-form-field class="example-full-width">
+                            <mat-label>Email</mat-label>
+                            <input
+                              matInput
+                              placeholder="Enter your email"
+                              [(ngModel)]="email"
+                              name="email"
+                              required
+                            />
+                            <mat-error *ngIf="!isEmailValid()">
+                              Enter a valid Email
+                            </mat-error>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+                    </table>
+                  </form>
+                  <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+                </mat-card-content>
+                <mat-card-actions>
+                  <button
+                    mat-raised-button
+                    class="login-btn"
+                    (click)="emailOtpLogin()"
+                    color="primary"
+                    [disabled]="!isEmailValid()"
+                  >
+                    Send OTP
+                  </button>
+                </mat-card-actions>
+                </div>
+              <!-- </mat-card> -->
+               <!-- OTP Form -->
+                <div *ngIf="emailShowOtpForm">
+               <!-- <mat-card > -->
+                <mat-card-header>
+                  <mat-card-title>Enter OTP</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <form class="otp-form">
+                    <div class="otp-inputs">
+                      <input
+                        name="email"
+                        [(ngModel)]="emailOtpDigits"
+                        pattern="[0-9]"
+                        required
+                      />
+                    </div>
+                  </form>
+                  <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+                </mat-card-content>
+                <mat-card-actions>
+                  <button
+                    mat-raised-button
+                    class="login-btn"
+                    (click)="emailVerifyOTP()"
+                    color="primary"
+                    
+                  >
+                    Verify OTP
+                  </button>
+                  <button mat-button color="warn" (click)="resetForm()">Cancel</button>
+                </mat-card-actions>
+              <!-- </mat-card> -->
+             </div>
     </mat-card>
 </body>

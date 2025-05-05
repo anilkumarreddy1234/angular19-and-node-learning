@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const redis = require('redis');
+const Joi = require('joi');
 const port = 3000;
 
 const url = require("./config/db.config");
@@ -56,3 +58,5 @@ runExample();
 app.listen(port, () => {
   console.log(`Server.. running on http://localhost:${port}`);
 });
+
+

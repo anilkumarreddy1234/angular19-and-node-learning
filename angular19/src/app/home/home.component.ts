@@ -64,7 +64,6 @@ export class HomeComponent {
   public usersList(){
     this.userService.getUserList().subscribe(data =>{
       console.log("user data", data);
-
     })
   }
 

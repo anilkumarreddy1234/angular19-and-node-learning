@@ -8,8 +8,11 @@ const users = [
 ];
 
 const getAllUsers = async (req, res) => {
+  const cacheKey = req.originalUrl;
+  const redisClient = require('../utils/redisClient');
   try {
     const newUser = await User.find({}).select("-password");
+    await redisClient.setEx(cacheKey, 100, JSON.stringify(newUser));
     return res.status(200).json(newUser);
   } catch (error) {
     res.status(500).json(error);
